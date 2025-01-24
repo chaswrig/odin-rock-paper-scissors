@@ -1,4 +1,4 @@
-console.log(getComputerChoice())
+console.log(getHumanChoice())
 
 function getComputerChoice(){
 
@@ -21,4 +21,25 @@ function getComputerChoice(){
     }
 
     return computerChoice;
+}
+
+function getHumanChoice(){
+    let humanChoice
+    choice = prompt("Rock, paper, or scissors? Type r, p, or s")
+    switch(choice){
+        case "r":
+            humanChoice = "rock";
+            break;
+        
+        case "p":
+            humanChoice = "paper";
+            break;
+        
+        case "s":
+            humanChoice = "scissors";
+            break;
+        default: humanChoice = "Did not type r, p, or s";
+    }
+
+    return humanChoice;
 }
