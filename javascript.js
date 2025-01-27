@@ -4,6 +4,11 @@ let humanScore = 0;
 let computerScore = 0;
 
 playRound();
+playRound();
+playRound();
+playRound();
+playRound();
+console.log("Final Score: " + humanScore + " to " + computerScore);
 
 function playRound(){
     let computerChoice = getComputerChoice();
@@ -15,50 +20,38 @@ function playRound(){
 function determineWinner(computerChoice, humanChoice){
     if(computerChoice === humanChoice){
         console.log("Tie!");
-    } else if (computerChoice === "rock") {
-        let outcome = "";
-        switch(humanChoice){
-            case "paper":
-                outcome = "Humans win!";
-                break;
-            
-            case "scissors":
-                outcome = "Computers win!";
-                break;
-            default: outcome = "Tie after all?"
-        }
-            
-        console.log(outcome);
-    } else if (computerChoice === "paper") {
-        let outcome = "";
-        switch(humanChoice){
-            case "scissors":
-                outcome = "Humans win!";
-                break;
-            
-            case "rock":
-                outcome = "Computers win!";
-                break;
-            default: outcome = "Tie after all?"
-        }
-            
-        console.log(outcome);
     } else {
-        let outcome = "";
-        switch(humanChoice){
+        switch(computerChoice){
             case "rock":
-                outcome = "Humans win!";
+                if(humanChoice === "paper"){
+                    humanScore++;
+                    console.log("Human wins!");
+                } else {
+                    computerScore++;
+                    console.log("Computer wins!");
+                }
                 break;
-            
             case "paper":
-                outcome = "Computers win!";
+                if(humanChoice === "scissors"){
+                    humanScore++;
+                    console.log("Human wins!")
+                } else {
+                    computerScore++;
+                    console.log("Computer wins!");
+                }
                 break;
-            default: outcome = "Tie after all?"
-
-        console.log(outcome);
+            case "scissors":
+                if(humanChoice === "rock"){
+                    humanScore++;
+                    console.log("Human wins!");
+                } else {
+                    computerScore++;
+                    console.log("Computer wins!");
+                }
+                break;
+            default:console.log("determineWinner default message");
         }
     }
-    
 }
 
 
@@ -70,14 +63,17 @@ function getComputerChoice(){
     switch(choice){
         case 0:
             computerChoice = "rock";
+            console.log(computerChoice)
             break;
         
         case 1:
             computerChoice = "paper";
+            console.log(computerChoice)
             break;
         
         case 2:
             computerChoice = "scissors";
+            console.log(computerChoice)
             break;
         default: computerChoice = "default";
     }
@@ -87,18 +83,21 @@ function getComputerChoice(){
 
 function getHumanChoice(){
     let humanChoice
-    choice = prompt("Rock, paper, or scissors? Type r, p, or s")
+    choice = prompt("Rock, paper, or scissors? Press 1 for rock, 2 for paper, or 3 for scissors")
     switch(choice){
-        case "r":
+        case "1":
             humanChoice = "rock";
+            console.log(humanChoice);
             break;
         
-        case "p":
+        case "2":
             humanChoice = "paper";
+            console.log(humanChoice);
             break;
         
-        case "s":
+        case "3":
             humanChoice = "scissors";
+            console.log(humanChoice);
             break;
         default: humanChoice = "Did not type r, p, or s";
     }
