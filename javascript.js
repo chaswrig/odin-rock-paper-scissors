@@ -3,50 +3,65 @@
 let humanScore = 0;
 let computerScore = 0;
 
-playRound();
-playRound();
-playRound();
-playRound();
-playRound();
-console.log("Final Score: " + humanScore + " to " + computerScore);
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playRound(button.id);
+    });
+});
 
-function playRound(){
+
+const humanScoreDisplay = document.querySelector("#humanScore");
+const computerScoreDisplay = document.querySelector("#computerScore");
+const computerActions = document.querySelector("#computerActions");
+
+function updateScore(){
+    humanScoreDisplay.textContent = "Human: " + humanScore;
+    computerScoreDisplay.textContent = "Computer: " + computerScore;
+}
+
+function playRound(choice){
     let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
-
+    let humanChoice = getHumanChoice(choice);
     determineWinner(computerChoice, humanChoice);
+    updateScore();
 }
 
 function determineWinner(computerChoice, humanChoice){
     if(computerChoice === humanChoice){
-        console.log("Tie!");
+        computerActions.textContent = "Computer chose the same!"
+        humanScore++;
+        computerScore++;
     } else {
         switch(computerChoice){
             case "rock":
+                computerActions.textContent = "Computer chose rock!"
                 if(humanChoice === "paper"){
                     humanScore++;
-                    console.log("Human wins!");
+                    // console.log("Human wins!");
                 } else {
                     computerScore++;
-                    console.log("Computer wins!");
+                    // console.log("Computer wins!");
                 }
                 break;
             case "paper":
+                computerActions.textContent = "Computer chose paper!"
                 if(humanChoice === "scissors"){
                     humanScore++;
-                    console.log("Human wins!")
+                    // console.log("Human wins!")
                 } else {
                     computerScore++;
-                    console.log("Computer wins!");
+                    // console.log("Computer wins!");
                 }
                 break;
             case "scissors":
+                computerActions.textContent = "Computer chose scissors!"
                 if(humanChoice === "rock"){
                     humanScore++;
-                    console.log("Human wins!");
+                    // console.log("Human wins!");
                 } else {
                     computerScore++;
-                    console.log("Computer wins!");
+                    // console.log("Computer wins!");
                 }
                 break;
             default:console.log("determineWinner default message");
@@ -56,24 +71,23 @@ function determineWinner(computerChoice, humanChoice){
 
 
 function getComputerChoice(){
-
     let computerChoice;
     let choice = Math.floor(Math.random()* 100) % 3;
 
     switch(choice){
         case 0:
             computerChoice = "rock";
-            console.log(computerChoice)
+            // console.log(computerChoice)
             break;
         
         case 1:
             computerChoice = "paper";
-            console.log(computerChoice)
+            // console.log(computerChoice)
             break;
         
         case 2:
             computerChoice = "scissors";
-            console.log(computerChoice)
+            // console.log(computerChoice)
             break;
         default: computerChoice = "default";
     }
@@ -81,23 +95,22 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-function getHumanChoice(){
-    let humanChoice
-    choice = prompt("Rock, paper, or scissors? Press 1 for rock, 2 for paper, or 3 for scissors")
+function getHumanChoice(choice){
+    let humanChoice;
     switch(choice){
-        case "1":
+        case "rock":
             humanChoice = "rock";
             console.log(humanChoice);
             break;
         
-        case "2":
+        case "paper":
             humanChoice = "paper";
-            console.log(humanChoice);
+            // console.log(humanChoice);
             break;
         
-        case "3":
+        case "scissors":
             humanChoice = "scissors";
-            console.log(humanChoice);
+            // console.log(humanChoice);
             break;
         default: humanChoice = "Did not type r, p, or s";
     }
