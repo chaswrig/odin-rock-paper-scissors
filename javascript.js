@@ -3,17 +3,17 @@
 let humanScore = 0;
 let computerScore = 0;
 
+const humanScoreDisplay = document.querySelector("#humanScore");
+const computerScoreDisplay = document.querySelector("#computerScore");
+const computerActions = document.querySelector("#computerActions");
+
 const buttons = document.querySelectorAll("button");
+
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
         playRound(button.id);
     });
 });
-
-
-const humanScoreDisplay = document.querySelector("#humanScore");
-const computerScoreDisplay = document.querySelector("#computerScore");
-const computerActions = document.querySelector("#computerActions");
 
 function updateScore(){
     humanScoreDisplay.textContent = "Human: " + humanScore;
@@ -21,10 +21,18 @@ function updateScore(){
 }
 
 function playRound(choice){
-    let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice(choice);
-    determineWinner(computerChoice, humanChoice);
-    updateScore();
+    if(humanScore < 5 && computerScore < 5){
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice(choice);
+        determineWinner(computerChoice, humanChoice);
+        updateScore();
+    } else {
+        alert("The game is over! Clear this message to start over.");
+        computerScore = 0;
+        humanScore = 0;
+        updateScore();
+        computerActions.textContent = "";
+    }
 }
 
 function determineWinner(computerChoice, humanChoice){
@@ -68,7 +76,6 @@ function determineWinner(computerChoice, humanChoice){
         }
     }
 }
-
 
 function getComputerChoice(){
     let computerChoice;
