@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <style>
+        #playerActions {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        button {
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
     <script src="javascript.js" defer></script>
     <div id="playWindow">
-        <div>First player to five points wins. Ties are one point each.</div>
+        <div>First player to five points wins. No points are awarded for ties.</div>
         <div id="headline">The current score is: </div>
-        <div id="humanScore">Human: 0</div>
-        <div id="computerScore">Computer: 0</div>
+        <div id="humanScore">Player Score: -</div>
+        <div id="computerScore">Computer Score: -</div>
         <div id="playerActions">
+            <button id="reset">Reset</button>
             <button id="rock">Rock</button>
             <button id="paper">Paper</button>
             <button id="scissors">Scissors</button>
